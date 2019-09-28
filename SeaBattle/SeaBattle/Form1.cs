@@ -22,17 +22,17 @@ namespace SeaBattle
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            pictureBox1.Image = sea;
-            pictureBox2.Image = sea;
-            pictureBox3.Image = sea;
+            pictureBox1.Image = ship;
+            pictureBox2.Image = ship;
+            pictureBox3.Image = ship;
 
-            pictureBox11.Image = sea;
-            pictureBox12.Image = sea;
-            pictureBox13.Image = sea;
+            pictureBox11.Image = ship;
+            pictureBox12.Image = ship;
+            pictureBox13.Image = ship;
 
-            pictureBox21.Image = sea;
-            pictureBox22.Image = sea;
-            pictureBox23.Image = sea;
+            pictureBox21.Image = ship;
+            pictureBox22.Image = ship;
+            pictureBox23.Image = ship;
         }
 
         int[,] battleGround = new int[10, 10];

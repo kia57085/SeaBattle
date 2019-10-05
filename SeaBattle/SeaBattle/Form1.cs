@@ -16,206 +16,148 @@ namespace SeaBattle
         dynamic sea = Properties.Resources.ground0;
         dynamic shooted = Properties.Resources.ground1;
         dynamic ship = Properties.Resources.ground2;
+
+        
+        
+
         public Form1()
         {
             InitializeComponent();
         }
+
+        int edBackEnd = 2;
+        int shoot = -1;
+
+        int[,] backEnd = new int[10, 10];
+        PictureBox[,] battleGround = new PictureBox[10, 10];
+
+
         private void Form1_Load(object sender, EventArgs e)
         {
-            pictureBox1.Image = ship;
-            pictureBox2.Image = ship;
-            pictureBox3.Image = ship;
 
-            pictureBox11.Image = ship;
-            pictureBox12.Image = ship;
-            pictureBox13.Image = ship;
+            const int start = 15;
+            int width = start;
+            int height = start;
+            int size = 30;
 
-            pictureBox21.Image = ship;
-            pictureBox22.Image = ship;
-            pictureBox23.Image = ship;
+
+            for (int i = 0; i != 10; ++i)
+            {
+                width = start;
+                for(int j = 0; j != 10; ++j)
+                {
+                    battleGround[i, j] = new PictureBox();
+                    battleGround[i, j].Location = new Point(width, height);
+                    battleGround[i, j].Size = new Size(size, size);
+                    battleGround[i, j].BackColor = Color.Gray;
+                    battleGround[i, j].Name = i.ToString() + j.ToString();
+                    this.Controls.Add(battleGround[i, j]);
+                    width += size;
+                   
+                }
+                height += size;
+            }
+
+            for(int i = 0; i != 10; ++i)
+            {
+                for(int j = 0; j != 10; ++j)
+                {
+                    backEnd[i, j] = 0;
+                }
+            }
+
+
+            foreach(PictureBox pict in battleGround)
+            {
+                pict.Click += (pb, eArgs) =>
+                    {
+                        int i = (Convert.ToInt32(pict.Name)) / 10;
+                        int j = (Convert.ToInt32(pict.Name)) % 10;
+
+                        if(edBackEnd == -1)
+                        {
+                            backEnd[i, j] += shoot;
+                        }
+                        else if(edBackEnd >= 2)
+                        {
+                            for(int u = 0; u != edBackEnd-1; ++u)
+                            {
+                                backEnd[i, j + u] += 2;
+                                Console.WriteLine(backEnd[i, j + u]);
+                                check();
+                            }                          
+                        }                       
+                        check();
+                    };
+                  
+            }
+
         }
 
-        int[,] battleGround = new int[10, 10];
-        private void PictureBox1_Click(object sender, EventArgs e)
-        {
-
-            --battleGround[0, 0];
-            int val = battleGround[0, 0];
-
-            if(val == -1)
-            {
-                pictureBox1.Image = miss;
-            }
-            else if(val == 1)
-            {
-                pictureBox1.Image = shooted;
-            }
-            else if(val == 2)
-            {
-                pictureBox1.Image = (ship);
-            }
-        }
-        private void PictureBox2_Click(object sender, EventArgs e)
-        {
-            --battleGround[0, 1];
-            int val = battleGround[0, 1];
-
-            if (val == -1)
-            {
-                pictureBox2.Image = miss;
-            }
-            else if (val == 1)
-            {
-                pictureBox2.Image = shooted;
-            }
-            else if (val == 2)
-            {
-                pictureBox2.Image = (ship);
-            }
-        }
-        private void PictureBox3_Click(object sender, EventArgs e)
-        {
-            --battleGround[0, 2];
-            int val = battleGround[0, 2];
-
-            if (val == -1)
-            {
-                pictureBox3.Image = miss;
-            }
-            else if (val == 1)
-            {
-                pictureBox3.Image = shooted;
-            }
-            else if (val == 2)
-            {
-                pictureBox3.Image = ship;
-            }
-        }
-        private void PictureBox11_Click(object sender, EventArgs e)
-        {
-            --battleGround[1, 0];
-            int val = battleGround[1, 0];
-
-            if (val == -1)
-            {
-                pictureBox11.Image = miss;
-            }
-            else if (val == 1)
-            {
-                pictureBox11.Image = shooted;
-            }
-            else if (val == 2)
-            {
-                pictureBox11.Image = ship;
-            }
-        }
-        
-        private void PictureBox12_Click(object sender, EventArgs e)
-        {
-            --battleGround[1, 1];
-            int val = battleGround[1, 1];
-
-            if (val == -1)
-            {
-                pictureBox12.Image = miss;
-            }
-            else if (val == 1)
-            {
-                pictureBox12.Image = shooted;
-            }
-            else if (val == 2)
-            {
-                pictureBox12.Image = ship;
-            }
-        }
-        private void PictureBox13_Click(object sender, EventArgs e)
-        {
-            --battleGround[1, 2];
-            int val = battleGround[1, 2];
-
-            if (val == -1)
-            {
-                pictureBox13.Image = miss;
-            }
-            else if (val == 1)
-            {
-                pictureBox13.Image = shooted;
-            }
-            else if (val == 2)
-            {
-                pictureBox13.Image = ship;
-            }
-        }
-        private void PictureBox21_Click(object sender, EventArgs e)
-        {
-            --battleGround[2, 0];
-            int val = battleGround[2, 0];
-
-            if (val == -1)
-            {
-                pictureBox21.Image = miss;
-            }
-            else if (val == 1)
-            {
-                pictureBox21.Image = shooted;
-            }
-            else if (val == 2)
-            {
-                pictureBox21.Image = ship;
-            }
-        }
-        private void PictureBox22_Click(object sender, EventArgs e)
-        {
-            --battleGround[2, 1];
-            int val = battleGround[2, 1];
-
-            if (val == -1)
-            {
-                pictureBox22.Image = miss;
-            }
-            else if (val == 1)
-            {
-                pictureBox22.Image = shooted;
-            }
-            else if (val == 2)
-            {
-                pictureBox22.Image = ship;
-            }
-        }
-
-        private void PictureBox23_Click(object sender, EventArgs e)
-        {
-            --battleGround[2, 2];
-            int val = battleGround[2, 2];
-
-            if (val == -1)
-            {
-                pictureBox23.Image = miss;
-            }
-            else if (val == 1)
-            {
-                pictureBox23.Image = shooted;
-            }
-            else if (val == 2)
-            {
-                pictureBox23.Image = ship;
-            }
-        }
-        private void Button1_Click(object sender, EventArgs e)
+        void check()
         {
             for (int i = 0; i != 10; ++i)
             {
                 for (int j = 0; j != 10; ++j)
                 {
-                    battleGround[i, j] = 2;
+                    
+                    if (backEnd[i, j] == 0)
+                    {
+                        battleGround[i, j].Image = sea;
+                    }
+                    else if (backEnd[i, j] == 1)
+                    {
+                        battleGround[i, j].Image = shooted;
+                    }
+                    else if (backEnd[i, j] > 1)
+                    {
+                        battleGround[i, j].Image = ship;
+                    }
+                    else if (backEnd[i, j] == -1)
+                    {
+                        battleGround[i, j].Image = miss;
+                    }
+                }
+            }
+        }
+        private void Start_button_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i != 10; ++i)
+            {
+                for (int j = 0; j != 10; ++j)
+                {
+
+                    battleGround[i, j].Image = sea;
+                    backEnd[i, j] = 0;
+
                 }
             }
         }
 
-        private void Panel1_Paint(object sender, PaintEventArgs e)
+        private void Ship1_Click(object sender, EventArgs e)
         {
-            
+            edBackEnd = 2;
         }
 
+        private void Ship2_Click(object sender, EventArgs e)
+        {
+            edBackEnd = 3;
+        }
+
+        private void Ship3_Click(object sender, EventArgs e)
+        {
+            edBackEnd = 4;
+        }
+
+        private void Ship4_Click(object sender, EventArgs e)
+        {
+            edBackEnd = 5;
+        }
+
+        private void EndPlace_Click(object sender, EventArgs e)
+        {
+            edBackEnd = -1;
+        }
     }
 }
+ 

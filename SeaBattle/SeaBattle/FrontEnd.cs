@@ -12,20 +12,20 @@ namespace SeaBattle
 {
     public partial class FrontEnd : Form
     {
+        Image miss = Properties.Resources.miss;
+        Image sea = Properties.Resources.sea;
+        Image shooted = Properties.Resources.shooted;
+        Image ship = Properties.Resources.ship;
         enum groundStats
         {
-            Miss = -1,
+            Miss,
             Sea,
             Shooted,
             Ship
         }
 
-        Image miss = Properties.Resources.miss;
-        Image sea = Properties.Resources.sea;
-        Image shooted = Properties.Resources.shooted;
-        Image ship = Properties.Resources.ship;
-        PictureBox[,] battleGround = new PictureBox[10, 10];
         int valueOfClick;
+        PictureBox[,] battleGround = new PictureBox[10, 10];
         public FrontEnd()
         {
             InitializeComponent();

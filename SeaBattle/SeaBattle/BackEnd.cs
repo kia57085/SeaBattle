@@ -16,7 +16,7 @@ namespace SeaBattle
         FrontEnd frontEnd = new FrontEnd();
         enum groundStats
         {
-            Miss = -1,
+            Miss,
             Sea,
             Shooted,
             Ship
@@ -55,7 +55,7 @@ namespace SeaBattle
             {
                 for (int j = 0; j != 10; ++j)
                 {
-                    backEnd[i, j] = 0;
+                    backEnd[i, j] = (int)groundStats.Sea;
                 }
             }
         }

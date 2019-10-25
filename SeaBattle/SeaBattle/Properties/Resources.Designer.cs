@@ -63,9 +63,9 @@ namespace SeaBattle.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ground0 {
+        internal static System.Drawing.Bitmap miss {
             get {
-                object obj = ResourceManager.GetObject("ground0", resourceCulture);
+                object obj = ResourceManager.GetObject("miss", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace SeaBattle.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ground01 {
+        internal static System.Drawing.Bitmap sea {
             get {
-                object obj = ResourceManager.GetObject("ground01", resourceCulture);
+                object obj = ResourceManager.GetObject("sea", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace SeaBattle.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ground1 {
+        internal static System.Drawing.Bitmap ship {
             get {
-                object obj = ResourceManager.GetObject("ground1", resourceCulture);
+                object obj = ResourceManager.GetObject("ship", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace SeaBattle.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ground2 {
+        internal static System.Drawing.Bitmap shooted {
             get {
-                object obj = ResourceManager.GetObject("ground2", resourceCulture);
+                object obj = ResourceManager.GetObject("shooted", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

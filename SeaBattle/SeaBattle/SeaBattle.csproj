@@ -46,27 +46,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="BackEnd.cs" />
+    <Compile Include="FrontEnd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FrontEnd.Designer.cs">
+      <DependentUpon>FrontEnd.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Ship.cs" />
+    <EmbeddedResource Include="FrontEnd.resx">
+      <DependentUpon>FrontEnd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -81,19 +83,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ground01.bmp" />
+    <None Include="Resources\ship.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ground01.jpg" />
+    <None Include="Resources\shooted.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ground0.jpg" />
+    <None Include="Resources\miss.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ground1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ground2.jpg" />
+    <None Include="Resources\sea.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

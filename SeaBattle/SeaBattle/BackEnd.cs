@@ -9,12 +9,13 @@ namespace SeaBattle
 {
     class BackEnd
     {
+        const int size = 10;
         static BackEnd instance;
         bool rotation = false;
-        int[,] backEnd = new int[10, 10];
-        Ship[,] ships = new Ship[10, 10];
+        groundStats[,] backEnd = new groundStats[size, size];
+        Ship[,] ships = new Ship[size, size];
         FrontEnd frontEnd = new FrontEnd();
-        enum groundStats
+        public enum groundStats
         {
             Miss,
             Sea,
@@ -32,30 +33,17 @@ namespace SeaBattle
                 instance = new BackEnd();
             return instance;
         }
-        public void MissAroundKill(int x, int y, int length)
+        public int getSizeOfGround()
         {
-           for(int i = -1; i != 1; ++i)
-            {
-                for(int j = -1; j != length; ++j)
-                {
-                    if (i == 0)
-                    {
-                        if (j == 0 || j == length)
-                        {
-                            backEnd[x + j, y + i] = -1;
-                        }
-                    }
-                    else backEnd[x + j, y + i] = -1;
-                }
-            }
+            return size;
         }
         public void Fill()
         {
-            for (int i = 0; i != 10; ++i)
+            for (int i = 0; i != size; ++i)
             {
-                for (int j = 0; j != 10; ++j)
+                for (int j = 0; j != size; ++j)
                 {
-                    backEnd[i, j] = (int)groundStats.Sea;
+                    backEnd[i, j] = groundStats.Sea;
                 }
             }
         }
@@ -73,21 +61,21 @@ namespace SeaBattle
         }
         public void shoot(int x, int y)
         {
-            if (getValueOfGround(x, y) == (int)groundStats.Miss)
+            if (getValueOfGround(x, y) == groundStats.Miss)
             {
                 frontEnd.missClick();
             }
-            else if (getValueOfGround(x, y) == (int)groundStats.Sea)
+            else if (getValueOfGround(x, y) == groundStats.Sea)
             {
-                setValueOfGround(x, y, (int)groundStats.Miss);
+                setValueOfGround(x, y, groundStats.Miss);
             }
-            else if (getValueOfGround(x, y) == (int)groundStats.Shooted)
+            else if (getValueOfGround(x, y) == groundStats.Shooted)
             {
                 frontEnd.missClick();
             }
-            else if (getValueOfGround(x, y) == (int)groundStats.Ship)
+            else if (getValueOfGround(x, y) == groundStats.Ship)
             {
-                setValueOfGround(x, y, (int)groundStats.Shooted);
+                setValueOfGround(x, y, groundStats.Shooted);
                 ships[x, y].HelloFrom();
                 ships[x, y].shoot();
                 Console.WriteLine(ships[x, y].getHp());
@@ -97,30 +85,10 @@ namespace SeaBattle
         }
         public void install(int x, int y, int length)
         {
-            if(length == 1)
-            {
-                ships[x, y] = new ship1();
+            
+                ships[x, y] = new ship(length, rotation);
                 ships[x, y].setCoord(x, y);
-                ships[x, y].setRotation(rotation);
-            }
-            else if(length == 2)
-            {
-                ships[x, y] = new ship2();
-                ships[x, y].setCoord(x, y);
-                ships[x, y].setRotation(rotation);
-            }
-            else if (length == 3)
-            {
-                ships[x, y] = new ship3();
-                ships[x, y].setCoord(x, y);
-                ships[x, y].setRotation(rotation);
-            }
-            else if (length == 4)
-            {
-                ships[x, y] = new ship4();
-                ships[x, y].setCoord(x, y);
-                ships[x, y].setRotation(rotation);
-            }
+            
         }
         public void place(int x, int y, int length)
         {
@@ -128,27 +96,27 @@ namespace SeaBattle
             {
                 if (rotation == false)
                 {
-                    while (length + y > 10)
+                    while (length + y > size)
                     {
                         --y;
                     }
                     install(x, y, length);
                     for (int i = 0; i != length; ++i)
                     {
-                        setValueOfGround(x, y + i, (int)groundStats.Ship);
+                        setValueOfGround(x, y + i, groundStats.Ship);
                         ships[x, y + i] = ships[x, y];
                     }
                 }
                 else
                 {
-                    while (length + x > 10)
+                    while (length + x > size)
                     {
                         --x;
                     }
                     install(x, y, length);
                     for (int i = 0; i != length; ++i)
                     {
-                        setValueOfGround(x + i, y, (int)groundStats.Ship);
+                        setValueOfGround(x + i, y, groundStats.Ship);
                         ships[x + i, y] = ships[x, y];
                     }
                 }
@@ -156,11 +124,11 @@ namespace SeaBattle
             else frontEnd.missClick();
 
         }
-        public int getValueOfGround(int x, int y)
+        public groundStats getValueOfGround(int x, int y)
         {
             return backEnd[x, y];
         }
-        public void setValueOfGround(int x, int y, int value)
+        public void setValueOfGround(int x, int y, groundStats value)
         {
             backEnd[x, y] = value;
         }

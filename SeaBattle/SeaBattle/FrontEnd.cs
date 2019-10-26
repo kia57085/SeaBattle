@@ -16,16 +16,10 @@ namespace SeaBattle
         Image sea = Properties.Resources.sea;
         Image shooted = Properties.Resources.shooted;
         Image ship = Properties.Resources.ship;
-        enum groundStats
-        {
-            Miss,
-            Sea,
-            Shooted,
-            Ship
-        }
 
+        const int _size = 10;
         int valueOfClick;
-        PictureBox[,] battleGround = new PictureBox[10, 10];
+        PictureBox[,] battleGround = new PictureBox[_size, _size];
         public FrontEnd()
         {
             InitializeComponent();
@@ -39,10 +33,10 @@ namespace SeaBattle
             int height = start;
             int size = 30;
 
-            for (int i = 0; i != 10; ++i)
+            for (int i = 0; i != _size; ++i)
             {
                 width = start;
-                for (int j = 0; j != 10; ++j)
+                for (int j = 0; j != _size; ++j)
                 {
                     battleGround[i, j] = new PictureBox();
                     battleGround[i, j].Location = new Point(width, height);
@@ -81,23 +75,23 @@ namespace SeaBattle
         }
         public void check()
         {
-            for (int i = 0; i != 10; ++i)
+            for (int i = 0; i != _size; ++i)
             {
-                for (int j = 0; j != 10; ++j)
+                for (int j = 0; j != _size; ++j)
                 {
-                    if (BackEnd.getInstance().getValueOfGround(i, j) == (int)groundStats.Miss)
+                    if (BackEnd.getInstance().getValueOfGround(i, j) == BackEnd.groundStats.Miss)
                     {
                         battleGround[i, j].Image = miss;
                     }
-                    else if (BackEnd.getInstance().getValueOfGround(i, j) == (int)groundStats.Sea)
+                    else if (BackEnd.getInstance().getValueOfGround(i, j) == BackEnd.groundStats.Sea)
                     {
                         battleGround[i, j].Image = sea;
                     }
-                    else if (BackEnd.getInstance().getValueOfGround(i, j) == (int)groundStats.Ship)
+                    else if (BackEnd.getInstance().getValueOfGround(i, j) == BackEnd.groundStats.Ship)
                     {
                         battleGround[i, j].Image = ship;
                     }
-                    else if (BackEnd.getInstance().getValueOfGround(i, j) == (int)groundStats.Shooted)
+                    else if (BackEnd.getInstance().getValueOfGround(i, j) == BackEnd.groundStats.Shooted)
                     {
                         battleGround[i, j].Image = shooted;
                     }

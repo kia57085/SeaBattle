@@ -153,7 +153,7 @@ namespace SeaBattle
                     for (int i = 0; i != length; ++i)
                     {
                         backEnd[x, y + i] = groundStats.Sea;
-                        ships[x, y].destroy(length);
+                        ships[x, y + i].destroy(length);
                         ships[x, y + i] = null;
                     }
                 }
@@ -162,7 +162,7 @@ namespace SeaBattle
                     for (int i = 0; i != length; ++i)
                     {
                         backEnd[x + i, y] = groundStats.Sea;
-                        ships[x, y].destroy(length);
+                        ships[x + i, y].destroy(length);
                         ships[x + i, y] = null;
                     }
                 }

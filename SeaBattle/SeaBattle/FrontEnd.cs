@@ -56,9 +56,13 @@ namespace SeaBattle
                     int x = (Convert.ToInt32(pict.Name)) / 10; 
                     int y = (Convert.ToInt32(pict.Name)) % 10; 
                     
-                    if (valueOfClick == -1)
+                    if (valueOfClick == 11)
                     {
                         BackEnd.getInstance().shoot(x, y);
+                    }
+                    else if(valueOfClick == -1)
+                    {
+                        BackEnd.getInstance().destroy(x, y);
                     }
                     else
                     {
@@ -124,6 +128,7 @@ namespace SeaBattle
         {
             start_button.Visible = false;
             panel1.Visible = true;
+            Destroy.Visible = true;
             check();
         }
 
@@ -149,7 +154,7 @@ namespace SeaBattle
 
         private void EndPlace_Click(object sender, EventArgs e)
         {
-            valueOfClick = -1;
+            valueOfClick = 11;
         }
 
         private void Rotation_Click(object sender, EventArgs e)
@@ -191,9 +196,14 @@ namespace SeaBattle
 
         private void End_button1_Click(object sender, EventArgs e)
         {
-            valueOfClick = -1;
+            valueOfClick = 11;
         }
 
+        private void Destroy_Click(object sender, EventArgs e)
+        {
+
+            valueOfClick = -1;
+        }
     }
 }
  

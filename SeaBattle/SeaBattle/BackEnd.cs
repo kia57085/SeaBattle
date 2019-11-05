@@ -100,11 +100,18 @@ namespace SeaBattle
                     {
                         --y;
                     }
-                    install(x, y, length);
-                    for (int i = 0; i != length; ++i)
+                    if (checkForNeighbour(x, y, length) == false)
                     {
-                        setValueOfGround(x, y + i, groundStats.Ship);
-                        ships[x, y + i] = ships[x, y];
+                        install(x, y, length);
+                        for (int i = 0; i != length; ++i)
+                        {
+                            setValueOfGround(x, y + i, groundStats.Ship);
+                            ships[x, y + i] = ships[x, y];
+                        }
+                    }
+                    else
+                    {
+                        frontEnd.missClick();
                     }
                 }
                 else
@@ -113,16 +120,53 @@ namespace SeaBattle
                     {
                         --x;
                     }
-                    install(x, y, length);
-                    for (int i = 0; i != length; ++i)
+                    if (checkForNeighbour(x, y, length) == false)
                     {
-                        setValueOfGround(x + i, y, groundStats.Ship);
-                        ships[x + i, y] = ships[x, y];
+                        install(x, y, length);
+                        for (int i = 0; i != length; ++i)
+                        {
+                            setValueOfGround(x + i, y, groundStats.Ship);
+                            ships[x + i, y] = ships[x, y];
+                        }
+                    }
+                    else
+                    {
+                        frontEnd.missClick();
                     }
                 }
             }
             else frontEnd.missClick();
+            checkForShipCount(x, y);
 
+        }
+        public void destroy(int x0, int y0)
+        {
+            if (ships[x0, y0] != null)
+            {
+                int x = ships[x0, y0].getCoordX();
+                int y = ships[x0, y0].getCoordY();
+                int length = ships[x, y].getLength();
+            
+                if (ships[x,y].getRotation() == false)
+                {
+                
+                    for (int i = 0; i != length; ++i)
+                    {
+                        backEnd[x, y + i] = groundStats.Sea;
+                        ships[x, y].destroy(length);
+                        ships[x, y + i] = null;
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i != length; ++i)
+                    {
+                        backEnd[x + i, y] = groundStats.Sea;
+                        ships[x, y].destroy(length);
+                        ships[x + i, y] = null;
+                    }
+                }
+            }
         }
         public groundStats getValueOfGround(int x, int y)
         {
@@ -136,20 +180,19 @@ namespace SeaBattle
         {
             int x = ships[x0, y0].getCoordX();
             int y = ships[x0, y0].getCoordY();
-            if (ships[x0, y0].getRotation() == false)
+
+            if (ships[x,y].getRotation() == false)
             {
                 for (int i = -1; i <= 1; ++i)
                 {
-                    if (i == 0)
+                    for (int j = -1; j <= length; ++j)
                     {
-                        backEnd[x, y - 1] = (int)groundStats.Miss;
-                        backEnd[x, y + length] = (int)groundStats.Miss;
-                    }
-                    else
-                    {
-                        for (int j = -1; j <= length; ++j)
+                        if (x + i >= 0 && x + i < size && y + j >= 0 && y + j < size)
                         {
-                            backEnd[x + i, y + j] = (int)groundStats.Miss;
+                            if(backEnd[x + i, y + j] == groundStats.Miss || backEnd[x + i, y + j] == groundStats.Sea)
+                            {
+                                backEnd[x + i, y + j] = groundStats.Miss;
+                            }
                         }
                     }
                 }
@@ -158,16 +201,14 @@ namespace SeaBattle
             {
                 for (int j = -1; j <= 1; ++j)
                 {
-                    if (j == 0)
+                    for (int i = -1; i <= length; ++i)
                     {
-                        backEnd[x - 1, y] = (int)groundStats.Miss;
-                        backEnd[x + length, y] = (int)groundStats.Miss;
-                    }
-                    else
-                    {
-                        for (int i = -1; i <= length; ++i)
+                        if (x + i >= 0 && x + i < size && y + j >= 0 && y + j < size)
                         {
-                            backEnd[x + i, y + j] = (int)groundStats.Miss;
+                            if (backEnd[x + i, y + j] == groundStats.Miss || backEnd[x + i, y + j] == groundStats.Sea)
+                            {
+                                backEnd[x + i, y + j] = groundStats.Miss;
+                            }
                         }
                     }
                 }
@@ -179,6 +220,56 @@ namespace SeaBattle
             if (ships[x, y].getHp() == 0)
                 kill(ships[x, y].getCoordX(), ships[x, y].getCoordY(), ships[x, y].getLength());
         }
-        
+        public bool checkForNeighbour(int x, int y, int length)
+        {
+            bool neighbour = false;
+
+            if(rotation == false)
+            {
+                for(int i = -1; i <= 1; ++i)
+                {
+                    for(int j = -1; j <= length; ++j)
+                    {
+                        if (x + i >= 0 && x + i < size && y + j >= 0 && y + j < size)
+                        {
+                            if (backEnd[x + i, y + j] == groundStats.Ship)
+                            {
+                                neighbour = true;
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for(int j = -1; j <= 1; ++j)
+                {
+                    for(int i = -1; i <= length; ++i)
+                    {
+                        if (x + i >= 0 && x + i < size && y + j >= 0 && y + j < size)
+                        {
+                            if (backEnd[x + i, y + j] == groundStats.Ship)
+                            {
+                                neighbour = true;
+                            }
+                        }
+                    }
+                }
+            }
+            return neighbour;
+        }
+        public void checkForShipCount(int x, int y)
+        {
+            if (ships[x, y] != null)
+            {
+                int length = ships[x, y].getLength();
+                int count = ships[x, y].getShipCount(length);
+                if (count < 0)
+                {
+                    frontEnd.outOfCountShip();
+                    destroy(x, y);
+                }
+            }
+        }
     }
 }

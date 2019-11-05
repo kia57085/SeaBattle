@@ -63,6 +63,7 @@
             this.pictureBox18 = new System.Windows.Forms.PictureBox();
             this.pictureBox19 = new System.Windows.Forms.PictureBox();
             this.pictureBox20 = new System.Windows.Forms.PictureBox();
+            this.Destroy = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -445,14 +446,27 @@
             this.pictureBox20.TabIndex = 1;
             this.pictureBox20.TabStop = false;
             // 
+            // Destroy
+            // 
+            this.Destroy.Location = new System.Drawing.Point(380, 545);
+            this.Destroy.Name = "Destroy";
+            this.Destroy.Size = new System.Drawing.Size(243, 79);
+            this.Destroy.TabIndex = 19;
+            this.Destroy.Text = "DesTrOy";
+            this.Destroy.UseVisualStyleBackColor = true;
+            this.Destroy.Visible = false;
+            this.Destroy.Click += new System.EventHandler(this.Destroy_Click);
+            // 
             // FrontEnd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 662);
+            this.Controls.Add(this.Destroy);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.start_button);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FrontEnd";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FrontEnd_Load);
@@ -519,6 +533,7 @@
         private System.Windows.Forms.PictureBox pictureBox18;
         private System.Windows.Forms.PictureBox pictureBox19;
         private System.Windows.Forms.PictureBox pictureBox20;
+        private System.Windows.Forms.Button Destroy;
     }
 }
 

@@ -14,35 +14,52 @@ namespace SeaBattle
         abstract public int getCoordX();
         abstract public int getCoordY();
         abstract public int getAllShipCount();
-        abstract public int getShipCount();
+        abstract public int getShipCount(int length);
         abstract public void setCoord(int x, int y);
         abstract public void HelloFrom();
         abstract public bool getRotation();
         abstract public void setRotation(bool rotation);
 
         abstract public void shoot();
-        protected int _allHp = 20;
-        protected int _allShipCount = 10;
-
-
+        abstract public void destroy(int length);
 
     }
     class ship : Ship
     {
+        static int _shipCount1 = 4;
+        static int _shipCount2 = 3;
+        static int _shipCount3 = 2;
+        static int _shipCount4 = 1;
+        static int _allHp = 20;
         int _hp;
         int _length;
         bool _rotation;
         int[] _coord = new int[2];
-        static int _shipCount;
         public ship(int length, bool rotation)
         {
             _length = length;
-            _shipCount = 5 - length;
             _hp = length;
             _rotation = rotation;
-            _allShipCount--;
-            _shipCount--;
-            Console.WriteLine("Hello from ship1!");
+            createShip(length);
+        }
+        void createShip(int length)
+        {
+            if (length == 1)
+            {
+                _shipCount1--;
+            }
+            else if (length == 2)
+            {
+                _shipCount2--;
+            }
+            else if (length == 3)
+            {
+                _shipCount3--;
+            }
+            else if (length == 4)
+            {
+                _shipCount4--;
+            }
         }
         public override int getCoordX()
         {
@@ -74,13 +91,30 @@ namespace SeaBattle
             _hp--;
             _allHp--;
         }
-        public override int getShipCount()
+        public override int getShipCount(int length)
         {
-            return _shipCount;
+            int shipCount = 0;
+            if (length == 1)
+            {
+                shipCount =_shipCount1;
+            }
+            else if (length == 2)
+            {
+                shipCount = _shipCount2;
+            }
+            else if (length == 3)
+            {
+                shipCount = _shipCount3;
+            }
+            else if (length == 4)
+            {
+                shipCount = _shipCount4;
+            }
+            return shipCount;
         }
         public override int getAllShipCount()
         {
-            return _allShipCount;
+            return _shipCount1 + _shipCount2 + _shipCount3 + _shipCount4;
         }
         public override void HelloFrom()
         {
@@ -93,6 +127,25 @@ namespace SeaBattle
         public override void setRotation(bool rotation)
         {
             _rotation = rotation;
+        }
+        public override void destroy(int length)
+        {
+            if (length == 1)
+            {
+                _shipCount1++;
+            }
+            else if (length == 2)
+            {
+                _shipCount2++;
+            }
+            else if (length == 3)
+            {
+                _shipCount3++;
+            }
+            else if (length == 4)
+            {
+                _shipCount4++;
+            }
         }
 
 

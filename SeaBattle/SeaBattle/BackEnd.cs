@@ -152,8 +152,8 @@ namespace SeaBattle
                 
                     for (int i = 0; i != length; ++i)
                     {
-                        backEnd[x, y + i] = groundStats.Sea;
                         ships[x, y + i].destroy(length);
+                        backEnd[x, y + i] = groundStats.Sea;
                         ships[x, y + i] = null;
                     }
                 }
@@ -161,8 +161,8 @@ namespace SeaBattle
                 {
                     for (int i = 0; i != length; ++i)
                     {
-                        backEnd[x + i, y] = groundStats.Sea;
                         ships[x + i, y].destroy(length);
+                        backEnd[x + i, y] = groundStats.Sea;
                         ships[x + i, y] = null;
                     }
                 }
@@ -213,7 +213,10 @@ namespace SeaBattle
                     }
                 }
             }
-
+            if(ships[x,y].getAllHp() == 0)
+            {
+                frontEnd.win();
+            }
         }
         public void checkForLife(int x, int y)
         {

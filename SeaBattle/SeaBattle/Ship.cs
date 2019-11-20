@@ -18,8 +18,6 @@ namespace SeaBattle
         abstract public void setCoord(int x, int y);
         abstract public void HelloFrom();
         abstract public bool getRotation();
-        abstract public void setRotation(bool rotation);
-
         abstract public void shoot();
         abstract public void destroy(int length);
 
@@ -46,19 +44,23 @@ namespace SeaBattle
         {
             if (length == 1)
             {
-                _shipCount1--;
+                _shipCount1 --;
+                Console.WriteLine("_shipCount1 = " + _shipCount1);
             }
             else if (length == 2)
             {
                 _shipCount2--;
+                Console.WriteLine("_shipCount2 = " + _shipCount2);
             }
             else if (length == 3)
             {
                 _shipCount3--;
+                Console.WriteLine("_shipCount3 = " + _shipCount3);
             }
             else if (length == 4)
             {
                 _shipCount4--;
+                Console.WriteLine("_shipCount4 = " + _shipCount4);
             }
         }
         public override int getCoordX()
@@ -124,10 +126,7 @@ namespace SeaBattle
         {
             return _rotation;
         }
-        public override void setRotation(bool rotation)
-        {
-            _rotation = rotation;
-        }
+        
         public override void destroy(int length)
         {
             if (length == 1)

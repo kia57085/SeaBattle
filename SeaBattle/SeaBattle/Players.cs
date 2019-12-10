@@ -73,11 +73,11 @@ namespace SeaBattle
             string winner = null;
             if (_hp1 == 0)
             {
-                winner = "player2";
+                winner = "Игрок2";
             }
             else if (_hp2 == 0) 
             {
-                winner = "player1";
+                winner = "Игрок1";
             }
             return winner;
         }

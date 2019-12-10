@@ -38,7 +38,7 @@ namespace SeaBattle
             {
                 picts.Click += (pb, eArgs) =>
                 {
-                    Console.WriteLine("Hello, Ebattel");
+                    
                     int x = (Convert.ToInt32(picts.Name)) / 10;
                     int y = (Convert.ToInt32(picts.Name)) % 10;
 
@@ -77,7 +77,7 @@ namespace SeaBattle
                             missClick();
                         }
                     }
-                    Console.WriteLine(picts.Name);
+                    
                 };
             }    
             
@@ -315,6 +315,8 @@ namespace SeaBattle
             panel1.Visible = true;
             Destroy.Visible = true;
             End_button.Visible = true;
+            textBox1.Visible = true;
+            textBox2.Visible = true;
             Fill();
             eFill();
         }
@@ -390,6 +392,16 @@ namespace SeaBattle
                 panel2.Visible = false;
                 End_button.Visible = false;
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -69,13 +69,11 @@ namespace SeaBattle
             else if (getValueOfGround(x, y) == groundStats.Ship)
             {
                 setValueOfGround(x, y, groundStats.Shooted);
-                ships[x, y].HelloFrom();
+                
                 ships[x, y].shoot();
                 Players.getInstance().shoot();
-                Console.WriteLine(ships[x, y].getHp());
                 checkForLife(x, y);
-                Console.WriteLine("hp1 = " + Players.getInstance().getHp1());
-                Console.WriteLine("hp2= " + Players.getInstance().getHp2());
+
             }
             
         }
@@ -225,7 +223,7 @@ namespace SeaBattle
         {
             if (ships[x, y].getHp() == 0)
             {
-                Console.WriteLine("ShipsHp = " + ships[x, y].getHp());
+                
                 kill(ships[x, y].getCoordX(), ships[x, y].getCoordY(), ships[x, y].getLength());
             }
         }

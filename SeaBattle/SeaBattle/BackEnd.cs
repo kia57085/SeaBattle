@@ -7,10 +7,9 @@ using System.Windows.Forms;
 
 namespace SeaBattle
 {
-    class BackEnd
+    public class BackEnd
     {
         const int size = 10;
-        static BackEnd instance;
         bool rotation = false;
         groundStats[,] backEnd = new groundStats[size, size];
         Ship[,] ships = new Ship[size, size];
@@ -22,16 +21,9 @@ namespace SeaBattle
             Shooted,
             Ship
         }
-        BackEnd()
+        public BackEnd()
         {
             Fill();
-        }
-
-        public static BackEnd getInstance()
-        {
-            if (instance == null)
-                instance = new BackEnd();
-            return instance;
         }
         public int getSizeOfGround()
         {
@@ -68,6 +60,7 @@ namespace SeaBattle
             else if (getValueOfGround(x, y) == groundStats.Sea)
             {
                 setValueOfGround(x, y, groundStats.Miss);
+                Players.getInstance().changeTurn();
             }
             else if (getValueOfGround(x, y) == groundStats.Shooted)
             {
@@ -78,15 +71,18 @@ namespace SeaBattle
                 setValueOfGround(x, y, groundStats.Shooted);
                 ships[x, y].HelloFrom();
                 ships[x, y].shoot();
+                Players.getInstance().shoot();
                 Console.WriteLine(ships[x, y].getHp());
                 checkForLife(x, y);
+                Console.WriteLine("hp1 = " + Players.getInstance().getHp1());
+                Console.WriteLine("hp2= " + Players.getInstance().getHp2());
             }
             
         }
         public void install(int x, int y, int length)
         {
             
-                ships[x, y] = new ship(length, rotation);
+                ships[x, y] = new Ship(length, rotation);
                 ships[x, y].setCoord(x, y);
             
         }
@@ -149,19 +145,19 @@ namespace SeaBattle
             
                 if (ships[x,y].getRotation() == false)
                 {
-                
+                    ships[x, y].destroy(length);
                     for (int i = 0; i != length; ++i)
                     {
-                        ships[x, y + i].destroy(length);
+                        
                         backEnd[x, y + i] = groundStats.Sea;
                         ships[x, y + i] = null;
                     }
                 }
                 else
                 {
+                    ships[x, y].destroy(length);
                     for (int i = 0; i != length; ++i)
                     {
-                        ships[x + i, y].destroy(length);
                         backEnd[x + i, y] = groundStats.Sea;
                         ships[x + i, y] = null;
                     }
@@ -192,6 +188,8 @@ namespace SeaBattle
                             if(backEnd[x + i, y + j] == groundStats.Miss || backEnd[x + i, y + j] == groundStats.Sea)
                             {
                                 backEnd[x + i, y + j] = groundStats.Miss;
+                               
+                                
                             }
                         }
                     }
@@ -208,12 +206,17 @@ namespace SeaBattle
                             if (backEnd[x + i, y + j] == groundStats.Miss || backEnd[x + i, y + j] == groundStats.Sea)
                             {
                                 backEnd[x + i, y + j] = groundStats.Miss;
+                                
                             }
                         }
                     }
                 }
             }
-            if(ships[x,y].getAllHp() == 0)
+            if(Players.getInstance().getHp1() == 0)
+            {
+                frontEnd.win();
+            }
+            else if(Players.getInstance().getHp2() == 0)
             {
                 frontEnd.win();
             }
@@ -221,7 +224,10 @@ namespace SeaBattle
         public void checkForLife(int x, int y)
         {
             if (ships[x, y].getHp() == 0)
+            {
+                Console.WriteLine("ShipsHp = " + ships[x, y].getHp());
                 kill(ships[x, y].getCoordX(), ships[x, y].getCoordY(), ships[x, y].getLength());
+            }
         }
         public bool checkForNeighbour(int x, int y, int length)
         {
@@ -274,5 +280,6 @@ namespace SeaBattle
                 }
             }
         }
+      
     }
 }

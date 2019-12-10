@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrontEnd));
             this.start_button = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -43,12 +44,10 @@
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.endPlace = new System.Windows.Forms.Button();
             this.rotation = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.end_button1 = new System.Windows.Forms.Button();
             this.rotation2 = new System.Windows.Forms.Button();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
@@ -64,6 +63,7 @@
             this.pictureBox19 = new System.Windows.Forms.PictureBox();
             this.pictureBox20 = new System.Windows.Forms.PictureBox();
             this.Destroy = new System.Windows.Forms.Button();
+            this.End_button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -228,16 +228,6 @@
             this.pictureBox10.TabIndex = 13;
             this.pictureBox10.TabStop = false;
             // 
-            // endPlace
-            // 
-            this.endPlace.Location = new System.Drawing.Point(145, 217);
-            this.endPlace.Name = "endPlace";
-            this.endPlace.Size = new System.Drawing.Size(127, 43);
-            this.endPlace.TabIndex = 15;
-            this.endPlace.Text = "End";
-            this.endPlace.UseVisualStyleBackColor = true;
-            this.endPlace.Click += new System.EventHandler(this.EndPlace_Click);
-            // 
             // rotation
             // 
             this.rotation.Location = new System.Drawing.Point(0, 217);
@@ -251,7 +241,6 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.pictureBox9);
-            this.panel1.Controls.Add(this.endPlace);
             this.panel1.Controls.Add(this.rotation);
             this.panel1.Controls.Add(this.pictureBox10);
             this.panel1.Controls.Add(this.pictureBox7);
@@ -275,7 +264,6 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.pictureBox11);
-            this.panel2.Controls.Add(this.end_button1);
             this.panel2.Controls.Add(this.rotation2);
             this.panel2.Controls.Add(this.pictureBox12);
             this.panel2.Controls.Add(this.pictureBox13);
@@ -304,16 +292,6 @@
             this.pictureBox11.Size = new System.Drawing.Size(30, 30);
             this.pictureBox11.TabIndex = 14;
             this.pictureBox11.TabStop = false;
-            // 
-            // end_button1
-            // 
-            this.end_button1.Location = new System.Drawing.Point(145, 217);
-            this.end_button1.Name = "end_button1";
-            this.end_button1.Size = new System.Drawing.Size(127, 43);
-            this.end_button1.TabIndex = 15;
-            this.end_button1.Text = "End";
-            this.end_button1.UseVisualStyleBackColor = true;
-            this.end_button1.Click += new System.EventHandler(this.End_button1_Click);
             // 
             // rotation2
             // 
@@ -452,21 +430,34 @@
             this.Destroy.Name = "Destroy";
             this.Destroy.Size = new System.Drawing.Size(243, 79);
             this.Destroy.TabIndex = 19;
-            this.Destroy.Text = "DesTrOy";
+            this.Destroy.Text = "убрать корабль";
             this.Destroy.UseVisualStyleBackColor = true;
             this.Destroy.Visible = false;
             this.Destroy.Click += new System.EventHandler(this.Destroy_Click);
+            // 
+            // End_button
+            // 
+            this.End_button.Location = new System.Drawing.Point(380, 451);
+            this.End_button.Name = "End_button";
+            this.End_button.Size = new System.Drawing.Size(242, 93);
+            this.End_button.TabIndex = 20;
+            this.End_button.Text = "закончить размещение";
+            this.End_button.UseVisualStyleBackColor = true;
+            this.End_button.Visible = false;
+            this.End_button.Click += new System.EventHandler(this.End_button_Click);
             // 
             // FrontEnd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 662);
+            this.Controls.Add(this.End_button);
             this.Controls.Add(this.Destroy);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.start_button);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrontEnd";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FrontEnd_Load);
@@ -513,12 +504,10 @@
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.PictureBox pictureBox10;
-        private System.Windows.Forms.Button endPlace;
         private System.Windows.Forms.Button rotation;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox11;
-        private System.Windows.Forms.Button end_button1;
         private System.Windows.Forms.Button rotation2;
         private System.Windows.Forms.PictureBox pictureBox12;
         private System.Windows.Forms.PictureBox pictureBox13;
@@ -534,6 +523,7 @@
         private System.Windows.Forms.PictureBox pictureBox19;
         private System.Windows.Forms.PictureBox pictureBox20;
         private System.Windows.Forms.Button Destroy;
+        private System.Windows.Forms.Button End_button;
     }
 }
 

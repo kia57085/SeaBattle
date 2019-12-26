@@ -16,9 +16,13 @@ namespace SeaBattle
         Image sea = Properties.Resources.sea;
         Image shooted = Properties.Resources.shooted;
         Image ship = Properties.Resources.ship;
+        Image turnPlayer1 = Properties.Resources.turnPlayer1;
+        Image turnPlayer2 = Properties.Resources.turnPlayer2;
 
         static BackEnd _backEnd = new BackEnd();
         static BackEnd _EbackEnd = new BackEnd();
+
+        bool isWeb = false;
 
         const int _size = 10;
         int valueOfClick;
@@ -128,7 +132,6 @@ namespace SeaBattle
                 };
             }            
         }
-
         public void missClick()
         {
             MessageBox.Show("Миссклик");
@@ -161,7 +164,7 @@ namespace SeaBattle
                     }
                 }
             }
-            
+            arrowTurn();
         }
         public void fullCheck()
         {
@@ -172,6 +175,7 @@ namespace SeaBattle
                     check(i, j);
                 }
             }
+            arrowTurn();
         }
         public void fullECheck()
         {
@@ -182,6 +186,7 @@ namespace SeaBattle
                     eCheck(i, j);
                 }
             }
+            arrowTurn();
         }
         public void eCheck(int i, int j)
         {
@@ -211,7 +216,7 @@ namespace SeaBattle
                     }
                 }
             }
-            
+            arrowTurn();
 
         }
         public void win()
@@ -270,19 +275,16 @@ namespace SeaBattle
                 height += size;
             }
         }
-        public void messageTurn()
+        public void arrowTurn()
         {
-            string turn;
             if(Players.getInstance().getTurn1() == true)
             {
-                turn = "player1";
+                pictureBox_turn.Image = turnPlayer1;
             }
             else
             {
-                turn = "player2";
-            }
-            MessageBox.Show("Ход " + turn);
-
+                pictureBox_turn.Image = turnPlayer2;
+            }   
         }
         public void Fill()
         {
@@ -317,8 +319,10 @@ namespace SeaBattle
             End_button.Visible = true;
             textBox1.Visible = true;
             textBox2.Visible = true;
+            
             Fill();
             eFill();
+            MessageBox.Show("Расставляет корабли: Игрок1");
         }
         private void Ship1_Click(object sender, EventArgs e)
         {
@@ -381,6 +385,7 @@ namespace SeaBattle
                 Players.getInstance().changeTurn();
                 Ship _ship = new Ship("reset");
                 Fill();
+                MessageBox.Show("Расставляет корабли: Игрок2");
             }
             else
             {
@@ -391,6 +396,7 @@ namespace SeaBattle
                 Destroy.Visible = false;
                 panel2.Visible = false;
                 End_button.Visible = false;
+                pictureBox_turn.Visible = true;
             }
         }
 
@@ -402,6 +408,19 @@ namespace SeaBattle
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void OneComp_Click(object sender, EventArgs e)
+        {
+            OneComp.Visible = false;
+            Web.Visible = false;
+            start_button.Visible = true;
+
+        }
+
+        private void Web_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("В разработке");
         }
     }
 }

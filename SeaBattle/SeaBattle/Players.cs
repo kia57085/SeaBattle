@@ -66,7 +66,7 @@ namespace SeaBattle
                 _turn[0] = true;
                 _turn[1] = false;
             }
-            frontEnd.messageTurn();
+            frontEnd.arrowTurn();
         }
         public string win()
         {

@@ -7,3 +7,5 @@ C:\Users\kia57\source\repos\SeaBattle\SeaBattle\obj\Debug\SeaBattle.csproj.Gener
 C:\Users\kia57\source\repos\SeaBattle\SeaBattle\obj\Debug\SeaBattle.exe
 C:\Users\kia57\source\repos\SeaBattle\SeaBattle\obj\Debug\SeaBattle.pdb
 C:\Users\kia57\source\repos\SeaBattle\SeaBattle\obj\Debug\SeaBattle.FrontEnd.resources
+C:\Users\kia57\source\repos\SeaBattle\SeaBattle\bin\Debug\SimpleTCP.dll
+C:\Users\kia57\source\repos\SeaBattle\SeaBattle\obj\Debug\SeaBattle.csproj.CopyComplete
